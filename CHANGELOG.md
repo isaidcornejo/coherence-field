@@ -6,6 +6,21 @@ The format follows *Keep a Changelog*, adapted for scientific software and repro
 
 ---
 
+## [1.0.2] – 2025-12-04
+
+### Changed
+
+* Updated `.gitignore` to properly support versioned manuscripts:
+
+  * PDFs generated in `paper/` are now excluded to avoid noise from local TeX builds.
+  * Versioned PDFs inside `paper_versions/` (including `latest/`) are explicitly **allowed** and tracked.
+  * Ensures a clean research workflow: only finalized manuscript versions are versioned, while development builds remain local.
+
+### Added
+
+* Updated documentation in `paper_versions/` to describe the versioning policy and the purpose of the `latest/` directory.
+* Clarified archival strategy for versioned PDFs and optional accompanying notes.
+
 ## [1.0.1] – 2025-12-04
 
 ### Changed

@@ -36,9 +36,12 @@ pkgs/
 *.nav
 *.snm
 
-# Ignore final PDF if you build it locally
-# (Optional: comment this if you want PDFs in Git)
-*.pdf
+# Ignore PDFs generated inside the working paper directory
+# (We only track versioned PDFs inside paper_versions/)
+paper/*.pdf
+
+# Allow versioned PDFs
+!paper_versions/**/*.pdf
 
 # -------------------------------
 # DATA FILES (do not version datasets)
