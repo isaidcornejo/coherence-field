@@ -1,30 +1,28 @@
 # Coherence Field: A Scalar Diagnostic for Empirical Score Alignment on Fisher Manifolds
 
-This repository provides the full implementation, experimental pipeline, and manuscript for the **Coherence Field** / **A Scalar Diagnostic for Empirical Score Alignment on Fisher Manifolds**—a reparameterization‑invariant framework designed to quantify empirical deviations from Fisher–Rao geometry with precision and invariance.
+This repository provides the full implementation, experimental pipeline, and manuscript for **A Scalar Diagnostic for Empirical Score Alignment on Fisher Manifolds**—a reparameterization‑invariant framework for quantifying empirical deviations from Fisher–Rao geometry.
 
 It includes:
 
 * A complete experimental pipeline (Gaussian, Laplace, GMM, MNIST MLP).
 * Reproducible spectral analysis of the alignment operator.
 * Automated figure generation.
-* A fully structured LaTeX manuscript.
+* A fully structured LaTeX manuscript with versioning.
 * Utility modules for alignment, spectral computations, and matrix operations.
 
 ---
 
 ## 📐 Core Idea
 
-Modern statistical models often exhibit strong anisotropy in their empirical sensitivity: heavy‑tailed curvature spectra, reinforcement modes, and dimensional collapse. These effects emerge across deep neural networks, mixture models, and high‑dimensional systems.
+Statistical models often exhibit anisotropy in their empirical sensitivity: reinforcement modes, dimensional collapse, and heavy‑tailed curvature spectra. To characterize these phenomena invariantly, we define:
 
-To characterize such phenomena invariantly, we define:
-
-**Scalar diagnostic**
+### Scalar diagnostic
 
 ```
 A(θ; q) = Tr(G⁻¹ C) – D
 ```
 
-**Rectified amplitude**
+### Rectified amplitude
 
 ```
 ϕ(θ; q) = max( sqrt(A), 0 )
@@ -32,18 +30,18 @@ A(θ; q) = Tr(G⁻¹ C) – D
 
 Where:
 
-* `G` — Fisher information matrix.
-* `C` — empirical score covariance under distribution `q`.
-* `H = G⁻¹ C` — alignment operator.
-* `λᵢ` — eigenvalues of `H`.
+* **G** — Fisher information matrix.
+* **C** — empirical score covariance under distribution `q`.
+* **H = G⁻¹ C** — alignment operator.
+* **λᵢ** — eigenvalues of `H`.
 
-Key identity:
+Identity:
 
 ```
 A = Σᵢ (λᵢ − 1)
 ```
 
-This provides a compact, invariant summary of empirical reinforcement (`λ>1`), suppression (`λ<1`), and equilibrium (`λ≈1`).
+This yields an invariant summary of empirical reinforcement (`λ>1`), suppression (`λ<1`), and equilibrium (`λ≈1`).
 
 ---
 
@@ -52,15 +50,16 @@ This provides a compact, invariant summary of empirical reinforcement (`λ>1`), 
 ```
 coherence-field/
 │
-├─ data/                     # datasets (MNIST, synthetic)
+├─ data/                         # datasets (MNIST, synthetic)
 │
-├─ paper/                    # LaTeX source
-│   ├─ figures/              # auto-generated and manual figures
+├─ paper/                        # LaTeX source for the current version
+│   ├─ figures/
 │   ├─ sections/
-│   ├─ tables/
-│   └─ coherence-field.tex
+│   └─ tables/
 │
-├─ results/                  # saved numerical results
+├─ paper_versions/               # versioned PDFs and notes
+│
+├─ results/                      # saved numerical results
 │
 ├─ src/
 │   ├─ experiments/
@@ -80,8 +79,8 @@ coherence-field/
 │   │
 │   └─ generate_figures.py
 │
-├─ environment.yml
 ├─ CITATION.cff
+├─ environment.yml
 ├─ LICENSE
 └─ README.md
 ```
@@ -108,12 +107,12 @@ conda activate coherence
 
 ## 🧪 Running Experiments
 
-Each experiment directory contains:
+Each experiment directory includes:
 
 * `model.py`
 * `score.py`
 * equilibrium and misalignment scripts
-* a dedicated `run_*.py` orchestrator
+* a `run_*.py` orchestrator
 
 ### Gaussian
 
@@ -143,36 +142,46 @@ python -m src.experiments.mnist.run_mnist
 
 ## 📊 Figures and Reproducibility
 
-All figures used in the manuscript can be reproduced by running:
+Generate all manuscript figures with:
 
 ```bash
 python -m src.generate_figures
 ```
 
-Outputs are written to `paper/figures/`.
+Outputs are saved to:
+
+```
+paper/figures/generated/
+```
 
 ---
 
-## 📝 Paper
+## 📝 Paper Compilation
 
-To build the LaTeX manuscript:
+The main LaTeX file to compile is:
+
+```
+paper/scalar-diagnostic-empirical-alignment.tex
+```
+
+To build the manuscript:
 
 ```bash
 cd paper
-latexmk -pdf coherence-field.tex
+latexmk -pdf scalar-diagnostic-empirical-alignment.tex
 ```
 
-The final compiled file is saved as:
+The compiled PDF is written to:
 
 ```
-paper/coherence-field.pdf
+paper/scalar-diagnostic-empirical-alignment.pdf
 ```
 
 ---
 
 ## 🔖 Citation
 
-A `CITATION.cff` file is included. The correct reference for the work is:
+A `CITATION.cff` file is included. Reference:
 
 ```
 Isaid Cornejo,
@@ -197,7 +206,3 @@ This is an active research project. Contributions, reproducibility audits, and e
 ## 📬 Contact
 
 **Isaid Cornejo** — Information Physics Institute
-
----
-
-Thank you for exploring the Coherence Field.
