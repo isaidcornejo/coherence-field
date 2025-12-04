@@ -1,0 +1,31 @@
+The Fisher--Rao metric provides the canonical geometric structure on statistical
+manifolds \cite{Fisher1922,Rao1945,AmariNagaoka2000}, yet empirical data often
+induce strong deviations from this geometry. Such deviations manifest through
+heavy-tailed spectra, dominant outlier modes, and effective dimensionality
+collapse in modern statistical models and neural networks
+\cite{Papyan2019,Sagun2016}. Despite their ubiquity, existing metrics for
+quantifying these effects (e.g., effective rank, participation ratio, spectral
+decay indices) lack reparametrization invariance and do not directly compare
+empirical sensitivity to the intrinsic geometric baseline.
+
+We introduce a coordinate-free scalar diagnostic that measures the empirical
+deformation of Fisher geometry:
+\[
+\mathcal{A}(\theta;q) = G^{ij}(\theta)\,\big(C_{ij}(\theta;q)-G_{ij}(\theta)\big),
+\]
+together with its rectified amplitude
+\[
+\phi(\theta;q) = \max\{\sqrt{\mathcal{A}},\,0\}.
+\]
+We show that the alignment operator $H = G^{-1}C$ is diagonalizable with real
+non-negative eigenvalues $\lambda_i$, and that
+$\mathcal{A} = \sum_i (\lambda_i - 1)$. Thus $\mathcal{A}$ provides a signed,
+invariant summary of empirical reinforcement ($\lambda_i>1$) and suppression
+($\lambda_i<1$), while $\phi$ isolates the excess-alignment sector.
+
+We validate the diagnostic across exponential families (Gaussian, Laplace)
+\cite{Brown1986}, a Gaussian mixture model \cite{McLachlanPeel2000}, and a
+trained neural network on MNIST \cite{LeCun1998}, demonstrating that
+$\mathcal{A}$ captures equilibrium, suppression, and strong empirical
+reinforcement in a unified scalar signature. Reproducible code and figures are
+provided online.

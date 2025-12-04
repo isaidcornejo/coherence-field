@@ -1,0 +1,75 @@
+\documentclass[aps,prd,onecolumn,11pt,nofootinbib]{revtex4-2}
+
+% -------------------------------------------------------------
+% PACKAGES
+% -------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage[dvipsnames,svgnames,x11names]{xcolor}
+\usepackage{lmodern}
+\usepackage{tikz}
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor  = Blue,
+    citecolor  = Blue,
+    urlcolor   = Blue
+}
+
+% -------------------------------------------------------------
+% MACROS
+% -------------------------------------------------------------
+\newcommand{\Aq}{\mathcal{A}(\theta;q)}
+\newcommand{\phiq}{\phi(\theta;q)}
+
+% -------------------------------------------------------------
+% DOCUMENT START
+% -------------------------------------------------------------
+\begin{document}
+
+\title{\bfseries A Scalar Diagnostic for Empirical Score Alignment on Fisher Manifolds}
+
+\author{Isaid Cornejo}
+\email{isaidcor@gmail.com}
+\affiliation{Information Physics Institute}
+\altaffiliation{ORCID: 0009-0008-5550-9716}
+
+\date{\today}
+
+\begin{abstract}
+\input{sections/1_abstract}
+\end{abstract}
+
+\maketitle
+
+% -------------------------------------------------------------
+% MAIN SECTIONS
+% -------------------------------------------------------------
+\input{sections/2_introduction}
+\input{sections/3_background}
+\input{sections/4_diagnostic}
+\input{sections/5_spectral}
+\input{sections/6_regimes}
+\input{sections/7_experiments}
+\input{sections/8_discussion}
+\input{sections/9_conclusion}
+
+% -------------------------------------------------------------
+% TABLES 
+% -------------------------------------------------------------
+\section*{Summary Table of Spectral Regimes}
+\input{tables/summary_table}
+
+% -------------------------------------------------------------
+\bibliographystyle{unsrt}
+\bibliography{references}
+
+\end{document}

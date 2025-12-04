@@ -1,0 +1,23 @@
+name: coherence
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.11
+  - numpy
+  - scipy
+  - matplotlib
+  - scikit-learn
+  - pytorch
+  - torchvision
+  - torchaudio
+  - cpuonly
+  - tqdm
+  - jupyter
+  - notebook
+  - pip
+  - pip:
+      - seaborn
+      - pandas

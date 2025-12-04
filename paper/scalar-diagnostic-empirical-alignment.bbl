@@ -1,0 +1,83 @@
+\begin{thebibliography}{10}
+
+\bibitem{Fisher1922}
+Ronald~A. Fisher.
+\newblock On the mathematical foundations of theoretical statistics.
+\newblock {\em Philosophical Transactions of the Royal Society A},
+  222(594--604):309--368, 1922.
+
+\bibitem{Rao1945}
+C.~R. Rao.
+\newblock Information and the accuracy attainable in the estimation of
+  statistical parameters.
+\newblock {\em Bulletin of the Calcutta Mathematical Society}, 37:81--89, 1945.
+
+\bibitem{AmariNagaoka2000}
+Shun-ichi Amari and Hiroshi Nagaoka.
+\newblock {\em Methods of Information Geometry}.
+\newblock Translations of Mathematical Monographs. American Mathematical
+  Society, 2000.
+
+\bibitem{Papyan2019}
+Vardan Papyan, X.~Y. Han, and David~L. Donoho.
+\newblock Prevalence of neural collapse during the terminal phase of deep
+  learning training.
+\newblock {\em PNAS}, 117(40):24652--24663, 2020.
+
+\bibitem{Sagun2016}
+Levent Sagun, Léon Bottou, and Yann LeCun.
+\newblock Eigenvalues of the hessian in deep learning: Singularity and beyond.
+\newblock {\em arXiv:1611.07476}, 2016.
+
+\bibitem{Brown1986}
+Lawrence~D. Brown.
+\newblock {\em Fundamentals of Statistical Exponential Families}.
+\newblock Institute of Mathematical Statistics, 1986.
+
+\bibitem{McLachlanPeel2000}
+Geoffrey McLachlan and David Peel.
+\newblock {\em Finite Mixture Models}.
+\newblock Wiley, 2000.
+
+\bibitem{LeCun1998}
+Yann LeCun, Léon Bottou, Yoshua Bengio, and Patrick Haffner.
+\newblock Gradient-based learning applied to document recognition.
+\newblock {\em Proceedings of the IEEE}, 86(11):2278--2324, 1998.
+
+\bibitem{Amari2016}
+Shun-ichi Amari.
+\newblock {\em Information Geometry and Its Applications}.
+\newblock Springer, 2016.
+
+\bibitem{Amari1998}
+Shun-ichi Amari.
+\newblock Natural gradient works efficiently in learning.
+\newblock {\em Neural Computation}, 10(2):251--276, 1998.
+
+\bibitem{Martens2014}
+James Martens.
+\newblock New insights and perspectives on the natural gradient method.
+\newblock {\em arXiv:1412.1193}, 2014.
+
+\bibitem{WainwrightJordan2008}
+Martin~J. Wainwright and Michael~I. Jordan.
+\newblock Graphical models, exponential families, and variational inference.
+\newblock {\em Foundations and Trends in Machine Learning}, 1(1--2):1--305,
+  2008.
+
+\bibitem{Laurent2018}
+Behrooz Ghorbani and Shankar Krishnan.
+\newblock An investigation into neural net hessians.
+\newblock {\em arXiv:1810.05487}, 2018.
+
+\bibitem{Nakkiran2020}
+Preetum Nakkiran et~al.
+\newblock Deep double descent: Where bigger models and more data hurt.
+\newblock {\em ICLR}, 2020.
+
+\bibitem{LaplaceDistribution}
+Samuel Kotz, Tomasz Kozubowski, and Krzysztof Podgórski.
+\newblock The laplace distribution and generalizations.
+\newblock {\em Springer Series in Statistics}, 2001.
+
+\end{thebibliography}

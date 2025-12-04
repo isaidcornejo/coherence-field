@@ -1,0 +1,87 @@
+\begin{center}
+\small
+\textbf{TABLE I. Summary of empirical alignment regimes across all models.}
+Here $\lambda$ denotes the eigenvalues of the Fisher-normalized alignment 
+operator $H = G^{-1/2} C G^{-1/2}$,
+$\mathcal{A} = \sum_i (\lambda_i - 1)$,
+and $\phi = \max\{\sqrt{\mathcal{A}},0\}$.
+
+\vspace{0.7em}
+
+\begin{tabular}{lccccl}
+\hline
+\textbf{Model} 
+& \textbf{Regime} 
+& $\boldsymbol{\lambda}$ 
+& $\boldsymbol{\mathcal{A}}$ 
+& $\boldsymbol{\phi}$ 
+& \textbf{Interpretation} \\
+\hline
+
+MNIST MLP 
+& Excess 
+& $\gg 1,\;\sim 0$ 
+& $\gg 1$ 
+& $\gg 1$ 
+& \begin{minipage}[t]{6cm}
+Strong dimensional collapse; curvature-dominant mode.
+\end{minipage} \\
+
+GMM (Equilibrium) 
+& Eq. 
+& $\sim 1$ 
+& $0$ 
+& $0$ 
+& \begin{minipage}[t]{6cm}
+Geometric stability.
+\end{minipage} \\
+
+GMM (Misaligned) 
+& Excess 
+& $(0.78,\,1.32,\,1.66)$ 
+& $0.76$ 
+& $0.87$ 
+& \begin{minipage}[t]{6cm}
+Moderate directional reinforcement.
+\end{minipage} \\
+
+Gaussian (Equilibrium) 
+& Eq. 
+& $(0.999,\,1.002)$ 
+& $0.0013$ 
+& $0.036$ 
+& \begin{minipage}[t]{6cm}
+Near-perfect Fisher equilibrium.
+\end{minipage} \\
+
+Gaussian (Mean-shift) 
+& Misalign. 
+& $(0.52,\, 5.00)$ 
+& $3.52$ 
+& $1.88$ 
+& \begin{minipage}[t]{6cm}
+One dominant reinforced mode.
+\end{minipage} \\
+
+Laplace (Equilibrium) 
+& Sub-align 
+& $(0.50,\,1.00)$ 
+& $-0.50$ 
+& $0$ 
+& \begin{minipage}[t]{6cm}
+Structural suppression (non-exponential family).
+\end{minipage} \\
+
+Laplace (Misaligned) 
+& Sub-align 
+& $(0.25,\,1.00)$ 
+& $-0.75$ 
+& $0$ 
+& \begin{minipage}[t]{6cm}
+Full collapse along one direction.
+\end{minipage} \\
+
+\hline
+\end{tabular}
+
+\end{center}

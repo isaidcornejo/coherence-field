@@ -1,0 +1,68 @@
+# -------------------------------
+# PYTHON
+# -------------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual and Conda environments
+.venv/
+env/
+venv/
+ENV/
+.conda/
+conda-meta/
+pkgs/
+
+# -------------------------------
+# JUPYTER
+# -------------------------------
+.ipynb_checkpoints/
+
+# -------------------------------
+# LATEX BUILD FILES
+# -------------------------------
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.gz
+*.lof
+*.lot
+*.nav
+*.snm
+
+# Ignore final PDF if you build it locally
+# (Optional: comment this if you want PDFs in Git)
+*.pdf
+
+# -------------------------------
+# DATA FILES (do not version datasets)
+# -------------------------------
+data/mnist/
+data/synthetic/
+data/*.npz
+data/*.npy
+data/*.csv
+
+# -------------------------------
+# RESULTS (large outputs)
+# -------------------------------
+results/
+experiments/logs/
+
+# -------------------------------
+# EDITORS
+# -------------------------------
+.vscode/
+.idea/
+
+# -------------------------------
+# OS FILES
+# -------------------------------
+.DS_Store
+Thumbs.db
