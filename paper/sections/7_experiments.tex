@@ -41,7 +41,7 @@ controlled deviation from it. Under $q=p$, the empirical covariance matches the
 Fisher metric, yielding eigenvalues $\lambda_i \approx 1$ and thus
 $\mathcal{A} \approx 0$.
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\linewidth]{figures/generated/gaussian_equilibrium.png}
 \caption{
@@ -56,7 +56,7 @@ A simple mean shift induces asymmetric deformation of empirical sensitivity:
 one direction becomes reinforced ($\lambda>1$) while the other is suppressed
 ($\lambda<1$). This produces $\mathcal{A}>0$ and a nonzero coherence amplitude.
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\linewidth]{figures/generated/gaussian_misalignment.png}
 \caption{
@@ -67,6 +67,8 @@ $\mathcal{A}>0$ and $\phi>0$.
 \label{fig:gaussian_mis}
 \end{figure}
 
+\FloatBarrier
+
 % -------------------------------------------------------------
 \subsection{Laplace Family: Structural Suppression}
 
@@ -75,7 +77,7 @@ empirical covariance deviates slightly from the Fisher metric
 \cite{LaplaceDistribution}. This produces mild suppression ($\lambda_i < 1$) and
 therefore $\mathcal{A}<0$.
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\linewidth]{figures/generated/laplace_equilibrium.png}
 \caption{
@@ -89,7 +91,7 @@ Under a shifted data distribution, both eigenvalues fall further below~1,
 demonstrating clear global suppression and vanishing coherence amplitude:
 $\phi=0$.
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\linewidth]{figures/generated/laplace_misalignment.png}
 \caption{
@@ -99,6 +101,8 @@ $\mathcal{A}<0$ and $\phi=0$, characteristic of a global suppression regime.
 \label{fig:laplace_mis}
 \end{figure}
 
+\FloatBarrier
+
 % -------------------------------------------------------------
 \subsection{Gaussian Mixture Model: Multimodal Reinforcement}
 
@@ -106,7 +110,7 @@ Gaussian mixtures introduce multimodality, leading to anisotropic empirical
 curvature and mild outlier eigenvalues even under equilibrium conditions
 \cite{McLachlanPeel2000}.
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\linewidth]{figures/generated/gmm_equilibrium.png}
 \caption{
@@ -120,7 +124,7 @@ When the mixture is misaligned relative to the data, the empirical covariance
 acquires clear reinforcement modes ($\lambda>1$) while other directions remain
 suppressed, producing a net positive scalar diagnostic.
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\linewidth]{figures/generated/gmm_misalignment.png}
 \caption{
@@ -129,6 +133,8 @@ GMM misalignment. Multimodality induces reinforced directions
 }
 \label{fig:gmm_mis}
 \end{figure}
+
+\FloatBarrier
 
 % -------------------------------------------------------------
 \subsection{Neural Network on MNIST: Strong Empirical Anisotropy}
@@ -139,7 +145,7 @@ $\lambda_{\max} \gg 1$, indicating an extremely reinforced empirical mode. Most
 remaining eigenvalues collapse near zero, reflecting effective dimensionality
 reduction \cite{Sagun2016,Papyan2019,Laurent2018}.
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.75\linewidth]{figures/generated/mnist_alignment.png}
 \caption{
@@ -150,6 +156,8 @@ diagnostic $\mathcal{A}$ and a correspondingly strong coherence amplitude.
 }
 \label{fig:mnist}
 \end{figure}
+
+\FloatBarrier
 
 % -------------------------------------------------------------
 \subsection{Summary}
@@ -167,3 +175,5 @@ $\phi$ accurately capture the empirical deformation of Fisher geometry:
 
 A consolidated numerical summary is provided in the table at the end of the
 paper.
+
+\FloatBarrier

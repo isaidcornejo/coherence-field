@@ -6,6 +6,26 @@ The format follows *Keep a Changelog*, adapted for scientific software and repro
 
 ---
 
+## [1.0.3] – 2025-12-04
+
+### Fixed
+
+* Corrected figure placement issues in the manuscript (`7_experiments.tex`) under the REVTeX class:
+
+  * Removed unsupported float specifier `H`, which is not allowed in APS/REVTeX workflows.
+  * Replaced all figure environments with `htbp` to ensure compliant and stable float behavior.
+  * Added `\FloatBarrier` between subsections to guarantee ordering consistency and prevent float leakage across sections.
+
+### Changed
+
+* Improved structural reliability of the manuscript by aligning float-handling with REVTeX best practices.
+* Ensured that all experiment figures now appear within their intended subsections, preserving narrative and analytical flow.
+
+### Notes
+
+* These fixes improve the editorial stability of the manuscript and prevent float-placement errors during compilation or journal submission workflows (e.g., PRD/APS).
+* No scientific content was modified—only layout and LaTeX infrastructure behavior.
+
 ## [1.0.2] – 2025-12-04
 
 ### Changed
