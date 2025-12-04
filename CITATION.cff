@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this work, please cite the concept DOI, which always resolves to the latest version of the document."
 
-title: "Empirical Alignment Diagnostic Repository"
+title: "A Scalar Diagnostic for Empirical Score Alignment on Fisher Manifolds"
 version: "2.0.0"
 date-released: "2025-12-04"
 
