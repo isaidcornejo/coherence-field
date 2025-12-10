@@ -1,0 +1,169 @@
+\section{Empirical Validation Across Statistical Models}
+\label{sec:experiments}
+
+This section presents the empirical behavior of the scalar diagnostic
+$\mathcal{A}(\theta;q)$ and its rectified amplitude $\phi(\theta;q)$ across four
+families of models: Gaussian, Laplace, Gaussian mixtures, and a trained neural
+network on MNIST. Each experiment follows the same computational pipeline:
+
+\begin{enumerate}
+    \item Compute the Fisher information matrix $G$.
+    \item Compute the empirical covariance $C$ under the data distribution $q$.
+    \item Form the Fisher-normalized operator
+    \[
+        H = G^{-1/2} C\, G^{-1/2},
+    \]
+    which is symmetric and positive semidefinite.
+    \item Compute its eigenvalues $\lambda_i$.
+    \item Evaluate the scalar diagnostic
+    \[
+        \mathcal{A} = \sum_{i=1}^D (\lambda_i - 1),
+        \qquad
+        \phi = \max\{\sqrt{\mathcal{A}},0\}.
+    \]
+\end{enumerate}
+
+All experiments were generated using the reproducible suite in
+\texttt{src/experiments/}, with figures automatically produced via:
+
+\begin{verbatim}
+python -m src.generate_figures
+\end{verbatim}
+
+The figures included below correspond exactly to the outputs stored in\\
+\texttt{paper/figures/generated/}.
+
+% -------------------------------------------------------------
+\subsection{Gaussian Family: Equilibrium and Mean-Shift Misalignment}
+
+The Gaussian model provides the simplest instance of Fisher equilibrium and
+controlled deviation from it. Under $q=p$, the empirical covariance matches the
+Fisher metric, yielding eigenvalues $\lambda_i \approx 1$ and thus
+$\mathcal{A} \approx 0$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.70\linewidth]{../figures/generated/gaussian_equilibrium.png}
+\caption{
+Eigenvalue spectrum of the alignment operator for the Gaussian model under
+Fisher equilibrium. Both eigenvalues satisfy $\lambda_i \approx 1$, producing
+$\mathcal{A}\approx 0$ and $\phi=0$.
+}
+\label{fig:gaussian_eq}
+\end{figure}
+
+A simple mean shift induces asymmetric deformation of empirical sensitivity:
+one direction becomes reinforced ($\lambda>1$) while the other is suppressed
+($\lambda<1$). This produces $\mathcal{A}>0$ and a nonzero coherence amplitude.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.70\linewidth]{../figures/generated/gaussian_misalignment.png}
+\caption{
+Gaussian misalignment via mean-shift. One eigenvalue is reinforced
+($\lambda\approx 5$) while the other is suppressed, yielding
+$\mathcal{A}>0$ and $\phi>0$.
+}
+\label{fig:gaussian_mis}
+\end{figure}
+
+% -------------------------------------------------------------
+\subsection{Laplace Family: Structural Suppression}
+
+The Laplace model is not a minimal exponential family, so even under $q=p$ the
+empirical covariance deviates slightly from the Fisher metric
+\cite{LaplaceDistribution}. This produces mild suppression ($\lambda_i < 1$) and
+therefore $\mathcal{A}<0$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.70\linewidth]{../figures/generated/laplace_equilibrium.png}
+\caption{
+Laplace equilibrium. Even when $q=p$, the non-exponential-family structure
+induces $\lambda_i < 1$ and $\mathcal{A}<0$, reflecting structural suppression.
+}
+\label{fig:laplace_eq}
+\end{figure}
+
+Under a shifted data distribution, both eigenvalues fall further below~1,
+demonstrating clear global suppression and vanishing coherence amplitude:
+$\phi=0$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.70\linewidth]{../figures/generated/laplace_misalignment.png}
+\caption{
+Laplace misalignment. Both eigenvalues satisfy $\lambda_i<1$, yielding
+$\mathcal{A}<0$ and $\phi=0$, characteristic of a global suppression regime.
+}
+\label{fig:laplace_mis}
+\end{figure}
+
+% -------------------------------------------------------------
+\subsection{Gaussian Mixture Model: Multimodal Reinforcement}
+
+Gaussian mixtures introduce multimodality, leading to anisotropic empirical
+curvature and mild outlier eigenvalues even under equilibrium conditions
+\cite{McLachlanPeel2000}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.70\linewidth]{../figures/generated/gmm_equilibrium.png}
+\caption{
+GMM equilibrium. Small deviations around $\lambda_i \approx 1$ arise from
+sampling variability and multimodal structure, with $\mathcal{A}\approx 0$.
+}
+\label{fig:gmm_eq}
+\end{figure}
+
+When the mixture is misaligned relative to the data, the empirical covariance
+acquires clear reinforcement modes ($\lambda>1$) while other directions remain
+suppressed, producing a net positive scalar diagnostic.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.70\linewidth]{../figures/generated/gmm_misalignment.png}
+\caption{
+GMM misalignment. Multimodality induces reinforced directions
+($\lambda>1$) and suppressed ones ($\lambda<1$), yielding $\mathcal{A}>0$.
+}
+\label{fig:gmm_mis}
+\end{figure}
+
+% -------------------------------------------------------------
+\subsection{Neural Network on MNIST: Strong Empirical Anisotropy}
+
+A fully connected network trained on MNIST \cite{LeCun1998} exhibits a
+dramatically anisotropic alignment spectrum. The largest eigenvalue satisfies
+$\lambda_{\max} \gg 1$, indicating extremely reinforced empirical curvature.
+Most remaining eigenvalues collapse near zero, reflecting effective
+dimensionality reduction \cite{Sagun2016,Papyan2019,Laurent2018}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\linewidth]{../figures/generated/mnist_alignment.png}
+\caption{
+Alignment spectrum of a trained MNIST MLP. The presence of a large outlier
+eigenvalue ($\lambda_{\max} \gg 1$) indicates strong empirical reinforcement,
+while the bulk collapses toward~0. This produces a large positive scalar
+diagnostic $\mathcal{A}$ and a correspondingly strong coherence amplitude.
+}
+\label{fig:mnist}
+\end{figure}
+
+% -------------------------------------------------------------
+\subsection{Summary}
+
+Across all tested families—Gaussian, Laplace, mixture models, and neural
+networks—the scalar diagnostic $\mathcal{A}$ and its rectified amplitude
+$\phi$ accurately capture the empirical deformation of Fisher geometry:
+
+\begin{itemize}
+    \item $\mathcal{A} \approx 0$ under Fisher equilibrium,
+    \item $\mathcal{A} < 0$ in structural or global suppression regimes,
+    \item $\mathcal{A} > 0$ when empirical reinforcement emerges,
+    \item large $\mathcal{A}$ in deep models with strong curvature outliers.
+\end{itemize}
+
+A consolidated numerical summary is provided in the table at the end of the
+paper.

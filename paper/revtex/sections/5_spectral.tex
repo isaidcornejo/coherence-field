@@ -1,0 +1,130 @@
+\section{Spectral Structure of the Alignment Operator}
+\label{sec:spectral}
+
+The scalar diagnostic $\mathcal{A}(\theta;q)$ becomes fully transparent when
+expressed through a natural mixed tensor that compares empirical and geometric
+sensitivity \emph{direction by direction}. This section develops the spectral
+structure of that operator and establishes the key identity
+\[
+\mathcal{A} = \sum_{i=1}^D (\lambda_i - 1),
+\]
+which provides a complete and invariant summary of empirical deformation.
+
+% -------------------------------------------------------------
+\subsection{The Alignment Operator}
+
+Raising one index of the empirical covariance with the inverse Fisher metric
+defines the $(1,1)$ alignment operator:
+\begin{equation}
+H^i_{\;j}(\theta;q)
+    := G^{ik}(\theta)\,C_{kj}(\theta;q).
+\label{eq:H_def}
+\end{equation}
+
+Using the decomposition $C_{ij} = G_{ij} + \Delta_{ij}$, we obtain
+\begin{equation}
+H^i_{\;j} = \delta^i_{\;j} + G^{ik}\Delta_{kj},
+\label{eq:H_decomposition}
+\end{equation}
+so that:
+\begin{itemize}
+    \item $H = I$ under Fisher-equilibrium sensitivity,
+    \item deviations from the identity encode empirical alignment,
+    \item reinforcement and suppression manifest as eigenvalues above or below~1.
+\end{itemize}
+
+Although $H$ need not be symmetric, it inherits strong spectral structure from
+the positive definiteness of the Fisher metric
+\cite{AmariNagaoka2000,Amari2016}.
+
+% -------------------------------------------------------------
+\subsection{Diagonalizability and Symmetric Surrogate}
+
+Because $G$ is positive definite, it admits a symmetric square root $G^{1/2}$
+and its inverse $G^{-1/2}$ \cite{AmariNagaoka2000}. Writing
+\[
+H = G^{-1}C
+\qquad\Longrightarrow\qquad
+H \sim G^{-1/2} C\, G^{-1/2},
+\]
+we see that $H$ is similar to the symmetric matrix
+$G^{-1/2} C\, G^{-1/2}$.
+
+Consequences:
+\begin{itemize}
+    \item all eigenvalues of $H$ are real and non-negative,
+    \item $H$ is diagonalizable,
+    \item the spectrum of $H$ equals that of the symmetric surrogate.
+\end{itemize}
+
+Thus the empirical sensitivity deformation can be studied through a symmetric
+operator without altering the underlying geometry.
+
+% -------------------------------------------------------------
+\subsection{Eigenvalues as Sensitivity Ratios}
+
+Let $\lambda_1,\ldots,\lambda_D$ denote the eigenvalues of $H$, with eigenvectors
+$u^{(i)}$ normalized with respect to the Fisher metric:
+\[
+G^{ij} u_i^{(k)} u_j^{(k)} = 1.
+\]
+
+Inserting these eigenvectors into the relation $Hu = \lambda u$ yields:
+\begin{equation}
+\lambda
+    = u^{i} C_{ij} u^{j},
+\label{eq:lambda_interpretation}
+\end{equation}
+so each eigenvalue measures the empirical variance of the score \emph{relative to}
+the Fisher--Rao expectation in that direction.
+
+Interpretation:
+\begin{itemize}
+    \item $\lambda_i > 1$ \quad reinforced empirical sensitivity,
+    \item $\lambda_i < 1$ \quad suppressed empirical sensitivity,
+    \item $\lambda_i = 1$ \quad Fisher-equivalent sensitivity.
+\end{itemize}
+
+The spectrum of $H$ therefore gives a direction-wise decomposition of empirical
+alignment on the statistical manifold.
+
+% -------------------------------------------------------------
+\subsection{Trace Identity and the Scalar Diagnostic}
+
+Taking the trace of the decomposition in
+Eq.~\eqref{eq:H_decomposition} immediately gives
+\[
+\mathrm{Tr}(H) = D + \mathrm{Tr}(G^{-1}\Delta).
+\]
+
+Hence
+\begin{equation}
+\mathcal{A}(\theta;q)
+    = \mathrm{Tr}(G^{-1}C) - D
+    = \mathrm{Tr}(H) - D
+    = \sum_{i=1}^D (\lambda_i - 1).
+\label{eq:trace_identity}
+\end{equation}
+
+This establishes that $\mathcal{A}$ aggregates the total empirical deviation of
+$H$ from the identity and that the rectified amplitude
+\[
+\phi = \max\{\sqrt{\mathcal{A}},0\}
+\]
+captures the \emph{total strength of excess alignment}.
+
+% -------------------------------------------------------------
+\subsection{Relation to Dimensionality Measures}
+
+Although related to classical measures of effective dimensionality such as the
+participation ratio and effective rank, the diagnostic $\mathcal{A}$ differs in
+three key ways:
+\begin{itemize}
+    \item it compares empirical sensitivity directly against the Fisher baseline,
+    \item it is signed, distinguishing suppression and reinforcement,
+    \item it is a scalar invariant under reparametrization.
+\end{itemize}
+
+Thus $\mathcal{A}$ offers a complementary perspective to spectral summaries
+commonly used in high-dimensional statistics and deep learning
+\cite{Papyan2019,Sagun2016,Laurent2018,Nakkiran2020}.

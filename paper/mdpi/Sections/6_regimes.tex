@@ -9,7 +9,7 @@ clear geometric and statistical interpretation.
 
 We summarize these regimes below before turning to empirical demonstrations.
 
-\input{figures/manual/alignment_regimes.tex}
+\input{../figures/manual/alignment_regimes.tex}
 
 % -------------------------------------------------------------
 \subsection{Fisher Equilibrium}
@@ -116,17 +116,26 @@ suppression.
 
 The three alignment regimes encode qualitatively different empirical geometric
 behaviors:
-\begin{center}
-\begin{tabular}{ccl}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{ccp{0.48\textwidth}<{\raggedright\arraybackslash}}
 \toprule
-Regime & Scalar Signature & Interpretation \\
+\textbf{Regime} & \textbf{Scalar Signature} & \textbf{Interpretation} \\
 \midrule
-Equilibrium & $\mathcal{A}=0$ & empirical curvature matches Fisher expectation \\
-Suppression & $\mathcal{A}<0$ & empirical sensitivity contracted relative to Fisher \\
-Excess Alignment & $\mathcal{A}>0$ & empirical reinforcement; anisotropy increased \\
+
+Equilibrium & $\mathcal{A}=0$ &
+Empirical curvature matches the Fisher expectation. \\
+
+Suppression & $\mathcal{A}<0$ &
+Empirical sensitivity is contracted relative to the Fisher baseline. \\
+
+Excess Alignment & $\mathcal{A}>0$ &
+Empirical reinforcement; increased anisotropy relative to Fisher geometry. \\
+
 \bottomrule
 \end{tabular}
-\end{center}
+\end{table}
 
 These regimes will be illustrated concretely through empirical experiments in
 Section~\ref{sec:experiments}.

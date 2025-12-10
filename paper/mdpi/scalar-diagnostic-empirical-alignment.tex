@@ -1,0 +1,118 @@
+\documentclass[entropy,article,submit,pdftex,moreauthors]{Definitions/mdpi} 
+
+%=================================================================
+% MDPI internal commands 
+\firstpage{1} 
+\makeatletter 
+\setcounter{page}{\@firstpage} 
+\makeatother
+\pubvolume{1}
+\issuenum{1}
+\articlenumber{0}
+\pubyear{2025}
+\copyrightyear{2025}
+\datereceived{ } 
+\daterevised{ }
+\dateaccepted{ } 
+\datepublished{ } 
+\hreflink{https://doi.org/10.5281/zenodo.17810561}
+
+\setlength{\headheight}{25pt}
+
+%=================================================================
+% Full title of the paper (Capitalized)
+\Title{A Scalar Diagnostic for Empirical Score Alignment on Fisher Manifolds}
+
+\TitleCitation{Scalar Diagnostic for Empirical Score Alignment}
+
+\newcommand{\orcidauthorA}{0009-0008-5550-9716} 
+
+\Author{Isaid Cornejo $^{1}$\orcidA{}}
+
+\AuthorNames{Isaid Cornejo}
+
+\AuthorCitation{Cornejo, I.}
+
+\address{%
+$^{1}$ \quad Information Physics Institute (IPI); isaidcor@gmail.com
+}
+
+\corres{Correspondence: isaidcor@gmail.com; Tel.: +52-56-4272-4979}
+
+% Abstract
+\abstract{
+    The Fisher--Rao metric provides the canonical geometric structure on statistical
+    manifolds, yet empirical data often induce strong deviations from this geometry,
+    manifesting through heavy-tailed spectra, dominant outlier modes, and effective
+    dimensionality collapse in modern statistical models and neural networks. Existing
+    metrics for quantifying these effects lack reparametriza\-tion invariance and do not
+    directly compare empirical sensitivity to the intrinsic geometric baseline. We
+    introduce a coordinate-free scalar diagnostic that measures the empirical deformation
+    of Fisher geometry by contracting the empirical score covariance with the inverse
+    Fisher metric, together with a rectified amplitude that isolates the excess-alignment
+    sector. The associated alignment operator is shown to be diagonalizable with real
+    non-negative eigenvalues, and the scalar diagnostic aggregates deviations through an
+    invariant spectral identity that distinguishes empirical reinforcement from suppression.
+    We validate the diagnostic across exponential families, Gaussian mixture models, and a
+    trained neural network on MNIST, demonstrating that it captures equilibrium,
+    suppression, and strong empirical reinforcement in a unified scalar signature.
+    Reproducible code and figures are provided online.
+}
+
+\keyword{Fisher information; information geometry; empirical score covariance; alignment operator; spectral diagnostics; statistical manifolds; eigenvalue analysis; neural networks; high-dimensional statistics}
+\MSC{62B10; 62H12; 68T07}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\input{sections/2_introduction}
+\input{sections/3_background}
+\input{sections/4_diagnostic}
+\input{sections/5_spectral}
+\input{sections/6_regimes}
+\input{sections/7_experiments}
+\input{sections/8_discussion}
+\input{sections/9_conclusion}
+
+\section*{Summary Table of Spectral Regimes}
+\input{tables/summary_table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\authorcontributions{
+Conceptualization, I.C.; methodology, I.C.; software, I.C.; validation, I.C.; formal analysis, I.C.; investigation, I.C.; resources, I.C.; data curation, I.C.; visualization, I.C.; writing---original draft preparation, I.C.; writing---review and editing, I.C. The author has read and agreed to the published version of the manuscript.
+}
+
+\funding{
+This research received no external funding.
+}
+
+\institutionalreview{
+Not applicable.
+}
+
+\informedconsent{
+Not applicable.
+}
+
+\dataavailability{
+All code and reproducibility materials supporting this study are openly available in the GitHub repository: \url{https://github.com/isaidcornejo/coherence-field}.
+}
+
+\acknowledgments{
+Not applicable.
+}
+
+\conflictsofinterest{
+The author declares no conflict of interest.
+}
+
+\begin{adjustwidth}{-\extralength}{0cm}
+
+\reftitle{References}
+\bibliography{../references}
+
+
+\PublishersNote{}
+\end{adjustwidth}
+
+\end{document}

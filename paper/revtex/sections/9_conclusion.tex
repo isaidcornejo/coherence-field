@@ -1,0 +1,41 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+This work introduced a reparametrization-invariant scalar diagnostic for
+quantifying empirical deviation from Fisher--Rao geometry. By expressing the
+alignment operator $H = G^{-1}C$ in a Fisher-normalized form, we showed that its
+spectrum admits real, non-negative eigenvalues whose deviation from unity
+captures reinforced and suppressed empirical sensitivity. The resulting scalar
+invariant,
+\[
+\mathcal{A} = \sum_{i=1}^D (\lambda_i - 1),
+\qquad
+\phi = \max\{\sqrt{\mathcal{A}},0\},
+\]
+provides a concise geometric summary of these effects.
+
+Across a range of models—from exponential families
+\cite{Brown1986,WainwrightJordan2008} to mixture models
+\cite{McLachlanPeel2000} to trained neural networks—the diagnostic exhibited
+consistent behavior aligned with theoretical expectations:
+$\mathcal{A}\approx 0$ under equilibrium, $\mathcal{A}<0$ under suppression,
+and $\mathcal{A}>0$ whenever empirical reinforcement was present. Deep networks,
+in particular, displayed strong anisotropic curvature characterized by large
+outlier eigenvalues and large positive values of $\mathcal{A}$
+\cite{Sagun2016,Papyan2019,Laurent2018,Nakkiran2020}.
+
+The scalar diagnostic sits alongside, but distinct from, existing measures of
+effective dimensionality, offering a geometric perspective centered on deviation
+from Fisher curvature rather than absolute spectral shape. Its invariance under
+reparametrization and ease of computation make it suitable for monitoring
+learning dynamics, analyzing curvature-induced phase transitions, or informing
+curvature-aware optimization.
+
+Future avenues include extending the diagnostic to implicit or score-based
+models, studying dynamical flows of empirical alignment during training,
+exploring high-dimensional asymptotics, and connecting alignment behavior to
+generalization and robustness in modern learning systems.
+
+All experiments and figures in this work are fully reproducible. 
+Code is available at\\
+\href{https://github.com/isaidcornejo/coherence-field}{github.com/isaidcornejo/coherence-field}.

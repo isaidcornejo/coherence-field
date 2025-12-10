@@ -1,0 +1,132 @@
+\section{Alignment Regimes}
+\label{sec:regimes}
+
+The spectrum of the alignment operator $H = G^{-1}C$ naturally partitions the
+behavior of empirical sensitivity into three fundamental regimes:
+\emph{equilibrium}, \emph{sup\-pression}, and \emph{excess alignment}. Each regime
+corresponds to a distinct empirical deformation of Fisher--Rao geometry and has
+clear geometric and statistical interpretation.
+
+We summarize these regimes below before turning to empirical demonstrations.
+
+\input{../figures/manual/alignment_regimes.tex}
+
+% -------------------------------------------------------------
+\subsection{Fisher Equilibrium}
+
+A model is in Fisher equilibrium at $\theta$ when
+\[
+\lambda_i(\theta;q) = 1 \quad \text{for all } i.
+\]
+In this regime, empirical score covariance matches the geometric expectation set
+by the Fisher metric. The alignment tensor vanishes,
+\[
+\Delta_{ij} = 0,
+\qquad
+\mathcal{A} = 0,
+\qquad
+\phi = 0,
+\]
+and the empirical sensitivity landscape is isotropic in Fisher-orthonormal
+coordinates.
+
+This regime occurs when $q=p$ in minimal exponential families
+\cite{Brown1986,WainwrightJordan2008} or when empirical and model curvature
+coincide despite mild model misspecification. Gaussian families (with mean and
+variance parameters) provide canonical examples.
+
+% -------------------------------------------------------------
+\subsection{Suppression Regime}
+
+The suppression regime corresponds to
+\[
+\lambda_i < 1 \quad \text{for one or more eigenvalues}.
+\]
+Here empirical variance falls \emph{below} the Fisher--Rao baseline, indicating
+that the data distribution $q$ concentrates sensitivity into a lower-dimensional
+tangent subspace than predicted by the model.
+
+Key signatures:
+\[
+\mathcal{A} < 0,
+\qquad
+\phi = 0,
+\]
+reflecting a net contraction of empirical sensitivity.
+
+Suppression manifests in models with heavy-tailed likelihood structure, sharp
+modes, or symmetry-induced collapse. The Laplace family provides a simple
+example: even under $q=p$, empirical curvature does not match Fisher curvature,
+yielding slight suppression \cite{LaplaceDistribution}.
+
+Geometrically, suppression corresponds to a flattening of the empirical local
+quadratic structure relative to the intrinsic Fisher geometry.
+
+% -------------------------------------------------------------
+\subsection{Excess Alignment}
+
+Excess alignment occurs when
+\[
+\exists\, i : \lambda_i > 1,
+\]
+and is characterized by empirical reinforcement along one or more
+Fisher-orthonormal directions.
+
+In this regime:
+\[
+\mathcal{A} > 0,
+\qquad
+\phi = \sqrt{\mathcal{A}}.
+\]
+
+Large outlier eigenvalues reflect strong anisotropy in empirical sensitivity,
+where $q$ emphasizes fluctuations aligned with specific directions of the tangent
+space. Gaussian mean-shift perturbations yield mild excess alignment; neural
+networks often display extreme instances, with $\lambda_{\max} \gg 1$ indicating
+dominant reinforcement modes \cite{Sagun2016,Papyan2019,Laurent2018}.
+
+Geometrically, excess alignment corresponds to an empirical reshaping of the
+local geometry into a directionally stretched structure relative to the Fisher
+metric.
+
+% -------------------------------------------------------------
+\subsection{Mixed Regimes and Directional Structure}
+
+In many practical cases, empirical spectra contain both suppressed and reinforced
+directions:
+\[
+\lambda_{i_1} < 1,\qquad
+\lambda_{i_2} > 1.
+\]
+
+Such mixed regimes occur frequently in:
+\begin{itemize}
+    \item misspecified models,
+    \item mixture models,
+    \item deep networks,
+    \item hierarchical generative models.
+\end{itemize}
+
+The scalar diagnostic $\mathcal{A}$ measures the \emph{net} deviation across all
+directions, while the full spectrum reveals the balance between reinforcement and
+suppression.
+
+% -------------------------------------------------------------
+\subsection{Summary}
+
+The three alignment regimes encode qualitatively different empirical geometric
+behaviors:
+\begin{center}
+\begin{tabular}{ccl}
+\toprule
+Regime & Scalar Signature & Interpretation \\
+\midrule
+Equilibrium & $\mathcal{A}=0$ & empirical curvature matches Fisher expectation \\
+Suppression & $\mathcal{A}<0$ & empirical sensitivity contracted relative to Fisher \\
+Excess Alignment & $\mathcal{A}>0$ & empirical reinforcement; anisotropy increased \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+These regimes will be illustrated concretely through empirical experiments in
+Section~\ref{sec:experiments}.

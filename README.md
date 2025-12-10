@@ -48,41 +48,28 @@ This yields an invariant summary of empirical reinforcement (`λ>1`), suppressio
 ## 📂 Repository Structure
 
 ```
-coherence-field/
-│
-├─ data/                         # datasets (MNIST, synthetic)
-│
-├─ paper/                        # LaTeX source for the current version
-│   ├─ figures/
-│   ├─ sections/
-│   └─ tables/
-│
-├─ paper_versions/               # versioned PDFs and notes
-│
-├─ results/                      # saved numerical results
-│
-├─ src/
-│   ├─ experiments/
-│   │   ├─ gaussian/
-│   │   ├─ gmm/
-│   │   ├─ laplace/
-│   │   └─ mnist/
-│   │       ├─ alignment.py
-│   │       ├─ model.py
-│   │       └─ run_mnist.py
-│   │
-│   ├─ utils/
-│   │   ├─ alignment_core.py
-│   │   ├─ spectral_utils.py
-│   │   ├─ matrix_utils.py
-│   │   └─ plot_utils.py
-│   │
-│   └─ generate_figures.py
-│
-├─ CITATION.cff
-├─ environment.yml
-├─ LICENSE
-└─ README.md
+    coherence-field/
+    │
+    ├─ data/                        
+    │
+    ├─ paper/
+    │   ├─ mdpi/                     # MDPI version
+    │   │
+    │   ├─ revtex/                   # RevTeX version
+    │
+    ├─ paper_versions/               # archived PDFs
+    │
+    ├─ results/
+    │
+    ├─ src/
+    │   ├─ experiments/
+    │   ├─ utils/
+    │   └─ generate_figures.py
+    │
+    ├─ CITATION.cff
+    ├─ environment.yml
+    ├─ LICENSE
+    └─ README.md
 ```
 
 ---
