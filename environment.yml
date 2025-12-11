@@ -18,6 +18,9 @@ dependencies:
   - jupyter
   - notebook
   - pip
+  - pytest
+  - pytest-cov
+  - hypothesis
   - pip:
       - seaborn
       - pandas

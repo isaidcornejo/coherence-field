@@ -9,6 +9,7 @@ It includes:
 * Automated figure generation.
 * A fully structured LaTeX manuscript with versioning.
 * Utility modules for alignment, spectral computations, and matrix operations.
+* A unified Makefile for reproducible builds (optional).
 
 ---
 
@@ -48,28 +49,30 @@ This yields an invariant summary of empirical reinforcement (`λ>1`), suppressio
 ## 📂 Repository Structure
 
 ```
-    coherence-field/
-    │
-    ├─ data/                        
-    │
-    ├─ paper/
-    │   ├─ mdpi/                     # MDPI version
-    │   │
-    │   ├─ revtex/                   # RevTeX version
-    │
-    ├─ paper_versions/               # archived PDFs
-    │
-    ├─ results/
-    │
-    ├─ src/
-    │   ├─ experiments/
-    │   ├─ utils/
-    │   └─ generate_figures.py
-    │
-    ├─ CITATION.cff
-    ├─ environment.yml
-    ├─ LICENSE
-    └─ README.md
+coherence-field/
+│
+├─ paper/
+│   ├─ mdpi/
+│   └─ revtex/
+│
+├─ paper_versions/
+│   ├─ latest/
+│   └─ v1/
+│
+├─ src/
+│   ├─ experiments/
+│   ├─ utils/
+│   └─ generate_figures.py
+│
+├─ test/
+│   ├─ experiments/
+│   └─ utils/
+│
+├─ CITATION.cff
+├─ Makefile
+├─ environment.yml
+├─ LICENSE
+└─ README.md
 ```
 
 ---
@@ -127,6 +130,22 @@ python -m src.experiments.mnist.run_mnist
 
 ---
 
+## 🧪 Running Tests (without Makefile)
+
+You can run the full test suite directly with Python:
+
+```bash
+python -m pytest -q
+```
+
+Or the verbose mode:
+
+```bash
+python -m pytest --maxfail=1 -vv
+```
+
+---
+
 ## 📊 Figures and Reproducibility
 
 Generate all manuscript figures with:
@@ -138,42 +157,88 @@ python -m src.generate_figures
 Outputs are saved to:
 
 ```
-paper/figures/generated/
+paper/*/figures/generated/
 ```
 
 ---
 
 ## 📝 Paper Compilation
 
-The main LaTeX file to compile is:
+The main LaTeX entrypoints are:
 
 ```
-paper/scalar-diagnostic-empirical-alignment.tex
+paper/mdpi/scalar-diagnostic-empirical-alignment.tex
+paper/revtex/scalar-diagnostic-empirical-alignment.tex
 ```
 
-To build the manuscript:
+To compile **without Makefile**:
 
 ```bash
-cd paper
+cd paper/mdpi
 latexmk -pdf scalar-diagnostic-empirical-alignment.tex
-```
 
-The compiled PDF is written to:
-
-```
-paper/scalar-diagnostic-empirical-alignment.pdf
+cd ../revtex
+latexmk -pdf scalar-diagnostic-empirical-alignment.tex
 ```
 
 ---
 
-## 🔖 Citation
+## 🛠️ Using the Makefile (recommended)
 
-A `CITATION.cff` file is included. Reference:
+### Run all tests
+
+```bash
+make test
+```
+
+### Generate all figures
+
+```bash
+make figures
+```
+
+### Compile MDPI version
+
+```bash
+make paper-mdpi
+```
+
+### Compile REVTeX version
+
+```bash
+make paper-revtex
+```
+
+### Full reproducible pipeline
+
+```bash
+make all
+```
+
+---
+
+## 🔖 Citation (Updated)
+
+### Concept DOI (permanent)
+
+```
+10.5281/zenodo.17731563
+```
+
+### Version‑specific DOIs
+
+```
+v2 — 10.5281/zenodo.17810561
+v1 — 10.5281/zenodo.17731564
+```
+
+### Preferred citation
 
 ```
 Isaid Cornejo,
 "A Scalar Diagnostic for Empirical Score Alignment on Fisher Manifolds",
 Information Physics Institute, 2025.
+DOI: 10.5281/zenodo.17731563
 ```
 
 ---

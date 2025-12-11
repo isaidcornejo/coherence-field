@@ -1,8 +1,46 @@
 # Changelog
 
 All notable changes to this repository will be documented in this file.
-
 The format follows *Keep a Changelog*, adapted for scientific software and reproducible research workflows.
+
+---
+
+## [1.0.5] – 2025-12-10
+
+### Added
+
+* **Full test suite integration** across all modules:
+
+  * Comprehensive coverage for `src/experiments/`, `src/utils/`, and figure-generation pipelines.
+  * Ensures numerical stability, reproducibility, and correctness of the alignment operator, scalar diagnostic, and spectral computations.
+
+* **Makefile** providing a unified, journal-ready reproducible workflow:
+
+  * `make test` — run complete test suite.
+  * `make figures` — regenerate all manuscript figures.
+  * `make paper-mdpi` — compile MDPI manuscript.
+  * `make paper-revtex` — compile REVTeX manuscript.
+  * `make all` — end-to-end reproducible build (clean → test → results → figures → papers).
+
+### Changed
+
+* **README updated extensively** to reflect the final reproducible pipeline:
+
+  * Added instructions for running tests directly using Python:
+
+    ```bash
+    python -m pytest -q
+    ```
+  * Added documentation for Makefile usage.
+  * Updated repository structure tree.
+  * Expanded paper compilation section (manual + Makefile).
+  * Updated citation section with Concept DOI and version-specific DOIs.
+
+### Notes
+
+* No scientific content was modified.
+* This version formalizes the repository as a fully reproducible, test-validated, journal-submission-ready codebase.
+* Complements the structural manuscript changes introduced in `1.0.4`.
 
 ---
 
