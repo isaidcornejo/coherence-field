@@ -7,9 +7,9 @@ PYTHON      = python
 PYTEST      = python -m pytest -q
 LATEXMK     = latexmk -pdf
 
-# Paper main files for MDPI and REVTeX
-MDPI_MAIN   = paper/mdpi/scalar-diagnostic-empirical-alignment.tex
-REVTEX_MAIN = paper/revtex/scalar-diagnostic-empirical-alignment.tex
+# Paper main files
+MDPI_MAIN   = scalar-diagnostic-empirical-alignment.tex
+REVTEX_MAIN = scalar-diagnostic-empirical-alignment.tex
 
 
 # ------------------------------------------------------------
@@ -23,7 +23,7 @@ test-verbose:
 
 
 # ------------------------------------------------------------
-# Figures (global reproducibility pipeline)
+# Figures
 # ------------------------------------------------------------
 figures:
 	$(PYTHON) -m src.generate_figures
@@ -38,48 +38,41 @@ paper-mdpi:
 paper-revtex:
 	cd paper/revtex && $(LATEXMK) $(REVTEX_MAIN)
 
-
-# Compile both versions for submission
 paper: paper-mdpi paper-revtex
 
 
-# Cleanup LaTeX auxiliary files for MDPI & REVTeX
+# ------------------------------------------------------------
+# Cleanup LaTeX auxiliary files
+# ------------------------------------------------------------
 paper-clean:
 	cd paper/mdpi && $(LATEXMK) -C
 	cd paper/revtex && $(LATEXMK) -C
 
 
 # ------------------------------------------------------------
-# Formatting & Linting
-# ------------------------------------------------------------
-format:
-	black src test
-
-lint:
-	flake8 src test
-
-
-# ------------------------------------------------------------
-# Cleanup utilities
+# Cleanup utilities (real multiplatform)
 # ------------------------------------------------------------
 clean:
-	find . -name "__pycache__" -exec rm -rf {} +
-	rm -rf results/*
+	$(PYTHON) -c "import os, shutil; \
+	[shutil.rmtree(os.path.join(r, d), ignore_errors=True) \
+	for r, ds, _ in os.walk('.', topdown=False) for d in ds if d=='__pycache__']; \
+	shutil.rmtree('results', ignore_errors=True)"
 
 clean-figures:
-	rm -rf paper/mdpi/figures/generated/*
-	rm -rf paper/revtex/figures/generated/*
-
+	$(PYTHON) -c "import shutil; \
+	shutil.rmtree('paper/mdpi/figures/generated', ignore_errors=True); \
+	shutil.rmtree('paper/revtex/figures/generated', ignore_errors=True)"
 
 deep-clean: clean clean-figures paper-clean
-	rm -rf .pytest_cache
-	rm -rf .mypy_cache
+	$(PYTHON) -c "import shutil; \
+	shutil.rmtree('.pytest_cache', ignore_errors=True); \
+	shutil.rmtree('.mypy_cache', ignore_errors=True)"
 
 
 # ------------------------------------------------------------
-# Full pipeline (reproducible build)
+# Full reproducible pipeline
 # ------------------------------------------------------------
-all: clean test results figures paper
+all: clean test figures paper
 	@echo "============================================================"
 	@echo "   Coherence Field — Full reproducible pipeline completed"
 	@echo "============================================================"

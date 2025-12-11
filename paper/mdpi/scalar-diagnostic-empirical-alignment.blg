@@ -3,11 +3,11 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: scalar-diagnostic-empirical-alignment.aux
 Reallocating 'name_of_file' (item size: 1) to 17 items.
 The style file: Definitions/mdpi.bst
-Reallocating 'name_of_file' (item size: 1) to 14 items.
-Database file #1: ../references.bib
+Reallocating 'name_of_file' (item size: 1) to 11 items.
+Database file #1: references.bib
 You've used 15 entries,
             2887 wiz_defined-function locations,
-            668 strings with 6317 characters,
+            668 strings with 6314 characters,
 and the built_in function-call counts, 5007 in all, are:
 = -- 448
 > -- 221
