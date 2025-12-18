@@ -114,6 +114,84 @@ $H$ from the identity and that the rectified amplitude
 captures the \emph{total strength of excess alignment}.
 
 % -------------------------------------------------------------
+\subsection{Finite-Sample Resolution and Minimal Coherent Alignment}
+
+The scalar diagnostic
+\begin{equation}
+\mathcal{A}(\theta;q) = \mathrm{Tr}(G^{-1}C) - D
+\end{equation}
+is defined exactly and invariantly at the population level. In empirical
+settings, however, all expectations entering the empirical score covariance
+$C_{ij}$ are estimated from a finite sample of size $N$. As a consequence, even
+under perfect Fisher equilibrium ($q=p$), the empirical alignment operator
+\begin{equation}
+H = G^{-1}C
+\end{equation}
+does not coincide exactly with the identity, but exhibits spectral fluctuations
+arising purely from finite-sample effects.
+
+Under standard regularity assumptions and for fixed parameter dimension, the
+eigenvalues $\lambda_i$ of $H$ fluctuate around unity with typical deviations of
+order
+\begin{equation}
+\lambda_i - 1 = \mathcal{O}(N^{-1/2}),
+\end{equation}
+independently of any genuine geometric misalignment. Deviations at this scale
+therefore do not correspond to resolvable empirical structure, but instead
+reflect statistical uncertainty in the estimation of score covariances.
+
+This observation implies the existence of a \emph{minimal geometric resolution
+scale} $\epsilon_N$, below which departures from Fisher equilibrium are not
+operationally meaningful. We therefore distinguish between \emph{formal
+alignment}, captured by the scalar diagnostic $\mathcal{A}$, and
+\emph{resolvable coherent alignment}, defined by excluding spectral deviations
+that lie within the Fisher--geometric noise floor. Importantly,
+$\mathcal{A}_{\min}$ is not a geometric invariant, but an operational diagnostic
+whose definition depends explicitly on finite-sample resolution.
+
+Concretely, we introduce the minimally resolvable excess-alignment diagnostic
+\begin{equation}
+\mathcal{A}_{\min}(\theta;q)
+\;=\;
+\sum_{\lambda_i > 1 + \epsilon_N} (\lambda_i - 1),
+\qquad
+\epsilon_N \sim \mathcal{O}(N^{-1/2}),
+\end{equation}
+which isolates only those eigenmodes whose empirical reinforcement exceeds the
+finite-sample resolution threshold. Only such modes are interpreted as carrying
+coherent geometric alignment.
+
+This refinement does not modify the underlying construction of the alignment
+operator, nor the definition of the scalar diagnostic $\mathcal{A}$ itself.
+Rather, it makes explicit the empirical resolution limit inherent to finite
+data. In particular, the condition $\mathcal{A}_{\min}=0$ should be interpreted
+as the absence of \emph{resolvable excess alignment}, which may arise either from
+true Fisher equilibrium or from empirical deviations that remain below the
+finite-sample noise floor.
+
+For empirical interpretation, it is often convenient to define a corresponding
+\emph{resolvable coherent amplitude}
+\begin{equation}
+\phi_{\mathrm{res}}(\theta)
+\;=\;
+\max\{\sqrt{\mathcal{A}_{\min}(\theta;q)},\,0\},
+\end{equation}
+which provides a finite-sample--robust measure of the intensity of coherent
+empirical reinforcement. This quantity plays an interpretive role analogous to
+the formal amplitude $\phi=\max\{\sqrt{\mathcal{A}},0\}$, but suppresses
+artificial inflation due to the accumulation of sub-threshold fluctuations, a
+particularly relevant effect in high-dimensional models such as deep neural
+networks.
+
+Throughout this work, empirical results are therefore interpreted with respect
+to both the formal diagnostic $\mathcal{A}$ and its resolvable counterparts
+$\mathcal{A}_{\min}$ and $\phi_{\mathrm{res}}$. This distinction is essential in
+heterogeneous or multi-scale systems, where genuine structural reinforcement may
+coexist with equally strong suppression across different directions of parameter
+space, yet only reinforced modes that exceed the finite-sample resolution
+threshold contribute to resolvable coherent alignment.
+
+% -------------------------------------------------------------
 \subsection{Relation to Dimensionality Measures}
 
 Although related to classical measures of effective dimensionality such as the

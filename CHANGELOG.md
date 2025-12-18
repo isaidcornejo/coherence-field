@@ -1,7 +1,46 @@
 # Changelog
 
-All notable changes to this repository will be documented in this file.
+All notable changes to this repository are documented in this file.
 The format follows *Keep a Changelog*, adapted for scientific software and reproducible research workflows.
+
+---
+
+## [1.0.6] – 2025-12-18
+
+### Changed
+
+* **Simplified manuscript architecture**:
+
+  * Removed journal-specific subdirectories `paper/revtex/` and `paper/mdpi/`.
+  * The repository now maintains a **single canonical manuscript** under `paper/`, written in **REVTeX** format.
+  * All figures are generated into a single directory:
+
+    ```
+    paper/figures/generated/
+    ```
+
+* **Figure and path utilities refactored**:
+
+  * Removed all references to `revtex` and `mdpi` figure paths.
+  * `get_fig_dirs()` now returns a single canonical directory, while remaining list-based for future extensibility.
+  * All path resolution is normalized to POSIX style for cross-platform reproducibility (Windows / Linux / CI).
+
+* **Tests aligned with new repository contract**:
+
+  * Updated I/O tests to reflect the single-directory figure pipeline.
+  * Removed assumptions about dual-publication workflows.
+  * Corrected monkeypatch targets to reflect actual import resolution in `experiment_io`.
+
+* **Documentation corrections**:
+
+  * Updated docstrings, comments, and README references to remove mentions of MDPI-specific workflows.
+  * Clarified that journal-specific layouts (if needed) should live in separate repositories or branches.
+
+### Notes
+
+* No scientific content was modified.
+* This change reflects a **deliberate contraction of scope**: the repository now represents a single, clean, REVTeX-based reference implementation.
+* The codebase remains extensible but avoids maintaining inactive or unused publication paths.
 
 ---
 
@@ -18,29 +57,29 @@ The format follows *Keep a Changelog*, adapted for scientific software and repro
 
   * `make test` — run complete test suite.
   * `make figures` — regenerate all manuscript figures.
-  * `make paper-mdpi` — compile MDPI manuscript.
-  * `make paper-revtex` — compile REVTeX manuscript.
-  * `make all` — end-to-end reproducible build (clean → test → results → figures → papers).
+  * `make paper` — compile the REVTeX manuscript.
+  * `make all` — end-to-end reproducible build (clean → test → results → figures → paper).
 
 ### Changed
 
-* **README updated extensively** to reflect the final reproducible pipeline:
+* **README updated extensively** to reflect the reproducible pipeline:
 
   * Added instructions for running tests directly using Python:
 
     ```bash
     python -m pytest -q
     ```
+
   * Added documentation for Makefile usage.
+
   * Updated repository structure tree.
-  * Expanded paper compilation section (manual + Makefile).
+
   * Updated citation section with Concept DOI and version-specific DOIs.
 
 ### Notes
 
 * No scientific content was modified.
-* This version formalizes the repository as a fully reproducible, test-validated, journal-submission-ready codebase.
-* Complements the structural manuscript changes introduced in `1.0.4`.
+* This version formalized the repository as a fully reproducible, test-validated, journal-submission-ready codebase.
 
 ---
 
@@ -48,43 +87,15 @@ The format follows *Keep a Changelog*, adapted for scientific software and repro
 
 ### Added
 
-* Introduced **dual-manuscript architecture** to support journal-specific submission workflows:
+* Introduced **dual-manuscript architecture** to support journal-specific submission workflows (now deprecated):
 
-  * New folder `paper/mdpi/` containing the full MDPI-compatible manuscript:
-
-    * `scalar-diagnostic-empirical-alignment.tex`
-    * MDPI-local `references.bib`
-    * `Definitions/` (class, logos, MDPI infrastructure)
-    * Figures located in `paper/mdpi/figures/`
-  * New folder `paper/revtex/` containing the REVTeX version for arXiv/JSTAT:
-
-    * `main.tex`
-    * REVTeX-local `references.bib`
-    * Figures located in `paper/revtex/figures/`
-
-* Added **separate bibliography files** for MDPI and REVTeX, ensuring:
-
-  * Each manuscript compiles independently.
-  * MDPI submissions succeed without external-path dependencies.
-  * arXiv/REVTeX submissions remain fully self-contained.
-
-### Changed
-
-* Updated README to describe dual-manuscript workflow:
-
-  * Which file to compile for MDPI.
-  * Which file to compile for arXiv/REVTeX.
-  * Submission-safe folder isolation rules.
-
-* Updated figure paths across both manuscripts to **remove all upward references (`../`)**, guaranteeing compatibility with MDPI’s ZIP upload system and arXiv’s path restrictions.
+  * `paper/mdpi/` for MDPI submissions.
+  * `paper/revtex/` for arXiv / APS submissions.
 
 ### Notes
 
-* These changes ensure full compliance with:
-
-  * MDPI's requirement to upload a single ZIP with internal references only.
-  * arXiv’s requirement for flat, dependency-contained manuscripts.
-* No scientific content changed—this update is entirely structural.
+* This architecture has been **superseded** in version 1.0.6 in favor of a single canonical manuscript.
+* No scientific content was modified.
 
 ---
 
@@ -92,21 +103,11 @@ The format follows *Keep a Changelog*, adapted for scientific software and repro
 
 ### Fixed
 
-* Corrected figure placement issues in the REVTeX manuscript (`7_experiments.tex`):
+* Corrected figure placement issues in the REVTeX manuscript:
 
   * Removed unsupported `H` float specifier.
   * Replaced figure floats with `htbp`.
   * Added `\FloatBarrier` to prevent float leakage across sections.
-
-### Changed
-
-* Improved reliability of float handling.
-* Ensured figures appear in their intended narrative order.
-
-### Notes
-
-* Essential for APS/JSTAT-style reviews.
-* Scientific content unchanged.
 
 ---
 
@@ -114,14 +115,7 @@ The format follows *Keep a Changelog*, adapted for scientific software and repro
 
 ### Changed
 
-* Updated `.gitignore` to support versioned manuscript workflows:
-
-  * Excluded PDFs in `paper/`.
-  * Allowed PDFs in `paper_versions/`.
-
-### Added
-
-* Documentation explaining version archival strategy and use of `latest/` folder.
+* Updated `.gitignore` to support versioned manuscript workflows.
 
 ---
 
@@ -138,16 +132,7 @@ The format follows *Keep a Changelog*, adapted for scientific software and repro
 
 ### Added
 
-* Initial public release of the **Coherence Field / Empirical Score Alignment Diagnostic** repository.
-* Full implementation of alignment operator (`H = G^{-1} C`) and scalar diagnostic (`A = Tr(G^{-1} C) – D`).
-* Complete reproducible experiment suite (Gaussian, Laplace, GMM, MNIST).
-* Modular experimental pipeline under `src/experiments/`.
-* Unified figure generation (`generate_figures.py`).
-* Full LaTeX manuscript under `paper/`.
-* `paper_versions/` archive with version history and revision notes.
-* `environment.yml` for reproducibility.
-* Optimized `.gitignore` and `CITATION.cff`.
-
-### Notes
-
-* This marks the **first complete release**, establishing the scientific and reproducible foundation for ongoing development.
+* Initial public release of the repository.
+* Full implementation of the alignment operator and scalar diagnostic.
+* Complete reproducible experiment suite.
+* Canonical REVTeX manuscript under `paper/`.

@@ -17,8 +17,11 @@ from src.utils.experiment_io import (
 def cleanup_dirs(paths):
     """
     Utility helper used in some tests to remove directories created during
-    temporary I/O operations. Ensures a clean environment when tests need to
-    generate multiple nested folders.
+    temporary I/O operations.
+
+    This function ensures a clean filesystem state when tests need to create
+    nested directories for figure or result output and must later remove them
+    to avoid cross-test contamination.
 
     Parameters
     ----------
@@ -40,10 +43,9 @@ def test_root_dir_exists():
     refer to an actual directory on disk.
 
     This root path is the anchor for:
-
-        • figure directories (for different LaTeX formats)
-        • results/ archives used in reproducibility workflows
-        • experiment orchestration
+        • figure output directories,
+        • results/ archives used in reproducibility workflows,
+        • experiment orchestration and data persistence.
 
     Ensuring this function works is critical for all downstream I/O utilities.
     """
@@ -54,41 +56,44 @@ def test_root_dir_exists():
 
 def test_figure_directories_are_correct():
     """
-    get_fig_dirs() must return the two canonical figure directories:
+    get_fig_dirs() must return the canonical figure directory used by the
+    project:
 
-        paper/revtex/figures/generated
-        paper/mdpi/figures/generated
+        paper/figures/generated
 
-    These reflect the dual publication pipeline (APS REVTeX vs MDPI), ensuring
-    that all generated figures are reproduced consistently for each manuscript.
+    Although returned as a list for extensibility, the current contract
+    specifies a single physical output directory. All returned paths must be
+    correctly nested under the project root and normalized to POSIX style.
     """
     dirs = get_fig_dirs()
 
-    assert len(dirs) == 2
+    assert len(dirs) == 1
+
     for d in dirs:
+        assert "\\" not in d
         assert "paper" in d
         assert d.endswith("figures/generated")
 
 
-def test_save_spectrum_creates_both_directories(tmp_path, monkeypatch):
+def test_save_spectrum_creates_directory_and_file(tmp_path, monkeypatch):
     """
     save_spectrum(eigvals, filename) must:
-        1. Resolve the project root path
-        2. Ensure both figure directories exist
-        3. Save the same plot into both locations
+        1. Resolve the project root path correctly
+        2. Ensure the figure output directory exists
+        3. Save the generated spectrum plot to disk
 
-    This test patches the project root to a temporary directory to isolate
-    filesystem side-effects and verifies that two independent copies of the
-    figure are created.
+    This test patches the project root to an isolated temporary directory to
+    prevent side-effects on the real filesystem.
     """
     # Patch project root → isolated temporary directory
     fake_root = tmp_path / "project"
-    (fake_root / "paper/revtex/figures/generated").mkdir(parents=True)
-    (fake_root / "paper/mdpi/figures/generated").mkdir(parents=True)
+    (fake_root / "paper/figures/generated").mkdir(parents=True)
 
+    # IMPORTANT:
+    # Patch the symbol as imported in experiment_io, not in paths.py
     monkeypatch.setattr(
         "src.utils.paths.get_root_dir",
-        lambda: str(fake_root)
+        lambda: str(fake_root).replace("\\", "/")
     )
 
     eigvals = np.array([1.0, 2.0, 3.0])
@@ -96,31 +101,26 @@ def test_save_spectrum_creates_both_directories(tmp_path, monkeypatch):
 
     save_spectrum(eigvals, filename)
 
-    expected_dirs = [
-        fake_root / "paper/revtex/figures/generated",
-        fake_root / "paper/mdpi/figures/generated",
-    ]
-
-    for d in expected_dirs:
-        f = d / filename
-        assert f.exists(), f"File missing: {f}"
+    expected_path = fake_root / "paper/figures/generated" / filename
+    assert expected_path.exists(), f"File missing: {expected_path}"
 
 
 def test_save_results_creates_directory_and_file(tmp_path, monkeypatch):
     """
     save_results(data, filename) must:
         • Create the results/ directory if it does not exist
-        • Write a valid NumPy .npz archive containing the data
+        • Write a valid NumPy .npz archive containing the provided data
 
-    This facilitates reproducibility by enabling structured storage of
-    experiment outputs, model diagnostics, and spectral summaries.
+    This functionality underpins reproducibility by enabling structured
+    persistence of experiment outputs, diagnostics, and metadata.
     """
     fake_root = tmp_path / "project"
     (fake_root / "results").mkdir(parents=True)
 
+    # Patch the symbol used inside experiment_io
     monkeypatch.setattr(
         "src.utils.paths.get_root_dir",
-        lambda: str(fake_root)
+        lambda: str(fake_root).replace("\\", "/")
     )
 
     data = {"a": np.array([1, 2, 3])}
@@ -134,26 +134,25 @@ def test_save_results_creates_directory_and_file(tmp_path, monkeypatch):
 
 def test_save_spectrum_does_not_crash_with_small_figures(tmp_path, monkeypatch):
     """
-    The helper ensure_min_resolution() inside save_spectrum() rescales figures
-    with insufficient pixel dimensions.
+    save_spectrum() must be robust to small or low-resolution figures.
 
-    This test verifies robustness:
-        • no errors occur even if the figure is initially too small
-        • scaling logic does not introduce exceptions
+    The internal resolution-normalization logic should:
+        • rescale figures if needed,
+        • avoid raising exceptions due to insufficient pixel dimensions.
 
-    The test passes if save_spectrum() completes without raising.
+    This test passes if save_spectrum() completes without error.
     """
     fake_root = tmp_path / "root"
-    (fake_root / "paper/revtex/figures/generated").mkdir(parents=True)
-    (fake_root / "paper/mdpi/figures/generated").mkdir(parents=True)
+    (fake_root / "paper/figures/generated").mkdir(parents=True)
 
+    # Patch the symbol used inside experiment_io
     monkeypatch.setattr(
         "src.utils.paths.get_root_dir",
-        lambda: str(fake_root)
+        lambda: str(fake_root).replace("\\", "/")
     )
 
     eigvals = np.array([0.1, 0.2])
     filename = "small_fig.png"
 
-    # If no exception is raised, the behavior is correct
+    # Correct behavior: no exception is raised
     save_spectrum(eigvals, filename)

@@ -52,12 +52,11 @@ This yields an invariant summary of empirical reinforcement (`λ>1`), suppressio
 coherence-field/
 │
 ├─ paper/
-│   ├─ mdpi/
-│   └─ revtex/
 │
 ├─ paper_versions/
 │   ├─ latest/
-│   └─ v1/
+│   ├─ v1/
+│   └─ v2/
 │
 ├─ src/
 │   ├─ experiments/
@@ -157,7 +156,7 @@ python -m src.generate_figures
 Outputs are saved to:
 
 ```
-paper/*/figures/generated/
+paper/figures/generated/
 ```
 
 ---
@@ -167,17 +166,13 @@ paper/*/figures/generated/
 The main LaTeX entrypoints are:
 
 ```
-paper/mdpi/scalar-diagnostic-empirical-alignment.tex
-paper/revtex/scalar-diagnostic-empirical-alignment.tex
+paper/scalar-diagnostic-empirical-alignment.tex
 ```
 
 To compile **without Makefile**:
 
 ```bash
-cd paper/mdpi
-latexmk -pdf scalar-diagnostic-empirical-alignment.tex
-
-cd ../revtex
+cd paper/
 latexmk -pdf scalar-diagnostic-empirical-alignment.tex
 ```
 
@@ -195,12 +190,6 @@ make test
 
 ```bash
 make figures
-```
-
-### Compile MDPI version
-
-```bash
-make paper-mdpi
 ```
 
 ### Compile REVTeX version
@@ -228,6 +217,7 @@ make all
 ### Version‑specific DOIs
 
 ```
+v3 — 10.5281/zenodo.17981050
 v2 — 10.5281/zenodo.17810561
 v1 — 10.5281/zenodo.17731564
 ```

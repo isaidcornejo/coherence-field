@@ -30,17 +30,16 @@ def test_fig_dirs_are_correct():
     get_fig_dirs() must return the two canonical figure directories used by the
     publication pipeline:
 
-        paper/revtex/figures/generated
-        paper/mdpi/figures/generated
+        paper/figures/generated
 
     These directories must:
         • be normalized to POSIX-style paths (no backslashes),
-        • be correctly nested inside the project under 'paper/.../figures/generated'.
+        • be correctly nested inside the project under 'paper/figures/generated'.
 
     The test verifies that the returned paths conform to this specification.
     """
     dirs = get_fig_dirs()
-    assert len(dirs) == 2
+    assert len(dirs) == 1
 
     for d in dirs:
         # Paths must use normalized forward slashes

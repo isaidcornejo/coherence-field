@@ -1,10 +1,12 @@
 cff-version: 1.2.0
 
-message: "If you use this work, please cite the concept DOI, which always resolves to the latest version of the document."
+message: >
+  If you use this work, please cite the concept DOI, which always resolves
+  to the latest version of the document.
 
 title: "A Scalar Diagnostic for Empirical Score Alignment on Fisher Manifolds"
-version: "2.0.0"
-date-released: "2025-12-04"
+version: "3.0.0"
+date-released: "2025-12-18"
 
 authors:
   - family-names: "Cornejo"
@@ -13,14 +15,17 @@ authors:
 
 repository-code: "https://github.com/isaidcornejo/coherence-field"
 
-# Concept DOI — permanent identifier that points to all versions
+# Concept DOI — permanent identifier pointing to all versions
 doi: "10.5281/zenodo.17731563"
 
 # Version-specific DOIs
 identifiers:
   - type: doi
+    value: "10.5281/zenodo.17981050"
+    description: "Version 3 (current release)"
+  - type: doi
     value: "10.5281/zenodo.17810561"
-    description: "Version 2 (latest)"
+    description: "Version 2"
   - type: doi
     value: "10.5281/zenodo.17731564"
     description: "Version 1"

@@ -2,9 +2,9 @@
 
 The Fisher--Rao metric endows parametric statistical models with a canonical
 Riemannian structure that reflects infinitesimal statistical distinguishability
-\cite{Fisher1922,Rao1945,AmariNagaoka2000,Amari2016}. Its geometric
-interpretation underlies classical asymptotic theory, natural gradient
-optimization \cite{Amari1998,Martens2014}, exponential-family structure
+\cite{Fisher1922,Rao1945,AmariNagaoka2000,Amari2016}. Its geometric interpretation
+underlies classical asymptotic theory, natural gradient optimization
+\cite{Amari1998,Martens2014}, exponential-family structure
 \cite{Brown1986,WainwrightJordan2008}, and the analysis of likelihood curvature
 in information geometry.
 
@@ -17,7 +17,7 @@ high-dimensional models and deep networks
 \cite{Papyan2019,Sagun2016,Laurent2018,Nakkiran2020}.
 
 Despite extensive spectral evidence, there remains no single, intrinsic,
-repara\-metrization-invariant-invariant scalar quantity that measures how empirical
+reparametrization-invariant scalar quantity that measures how empirical
 sensitivity deviates from the Fisher baseline. Existing notions of effective
 dimensionality (e.g., participation ratio, effective rank, spectral entropy) are
 useful but do not compare empirical covariance to the intrinsic geometric
@@ -31,6 +31,11 @@ together with a rectified amplitude
 \[
 \phi(\theta;q) = \max\{\sqrt{\mathcal{A}},0\}.
 \]
+
+In empirical applications, we further clarify the operational interpretation of
+this diagnostic by accounting explicitly for finite-sample resolution effects,
+distinguishing formal geometric alignment from resolvable coherent alignment,
+without modifying the underlying invariant construction.
 
 We show that this diagnostic:
 \begin{itemize}

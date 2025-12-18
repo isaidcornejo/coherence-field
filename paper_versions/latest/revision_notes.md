@@ -1,104 +1,131 @@
-# Revision Notes – Version 2
-Date: December 3, 2025  
+# Revision Notes – Version 3  
+Date: December 18, 2025  
 Document: “A Scalar Diagnostic for Empirical Score Alignment on Fisher Manifolds”
 
-This document summarizes the conceptual and structural changes introduced in
-Version 2 of the manuscript relative to the original “Coherence Field φ(θ)”
-formulation (Version 1).
+This document summarizes the conceptual clarifications and minor structural
+refinements introduced in Version 3 of the manuscript, following peer review
+and internal consistency checks. Version 3 does not alter the core diagnostic,
+theoretical framework, or experimental results introduced in Version 2.
 
 ---
 
-## 1. Conceptual Reformulation
+## 1. Scope of the Revision
 
-### 1.1 Replacement of the Coherence Field φ
-Version 1 introduced the “coherence field” φ(θ) based on excess Fisher-norm
-alignment. Version 2 generalizes this idea by:
+Version 3 is a **minor revision** focused on clarifying the *operational
+interpretation* of the scalar diagnostic under finite-sample estimation.
+No new theoretical objects are introduced, and no existing definitions are
+modified.
 
-- Replacing φ(θ) with the scalar diagnostic  
-  **A(θ; q) = Tr(G⁻¹ C) – D**
-- Introducing the **alignment operator H = G⁻¹ C**
-- Using its eigenvalues {λᵢ} to characterize empirical deformation through  
-  **A = Σᵢ (λᵢ − 1)**
-
-This yields a fully invariant, coordinate-free diagnostic.
-
-### 1.2 Rectified Amplitude ϕ
-While φ(θ) from Version 1 measured excess alignment directly, Version 2 defines:
-
-**ϕ(θ; q) = max( sqrt(A), 0 )**
-
-This acts as an “excess-alignment amplitude,” isolating reinforcement modes (λᵢ>1).
+Specifically:
+- The scalar diagnostic **𝒜(θ; q)** remains unchanged.
+- The alignment operator **H = G⁻¹C** remains unchanged.
+- All experiments, figures, and numerical results remain unchanged.
 
 ---
 
-## 2. Geometric and Spectral Structure
+## 2. Finite-Sample Resolution Clarification (New in Version 3)
 
-### 2.1 Alignment Operator
-Version 2 introduces the mixed tensor:
+### 2.1 Motivation
 
-**H = G⁻¹ C**
+While the diagnostic 𝒜 is defined exactly at the population level, empirical
+estimation from finite samples introduces unavoidable spectral fluctuations.
+In high-dimensional settings, the accumulation of sub-threshold fluctuations
+can artificially inflate scalar summaries if not interpreted carefully.
 
-and demonstrates:
-
-- H is diagonalizable
-- All eigenvalues λᵢ are real and non-negative
-- H is similar to the symmetric positive-semidefinite matrix G⁻¹/² C G⁻¹/²
-
-### 2.2 Identity for A
-The new spectral representation:
-
-**A = Σ (λᵢ − 1)**
-
-reveals:
-- equilibrium (λᵢ=1),
-- suppression (λᵢ<1),
-- reinforcement (λᵢ>1).
-
-This identity did not exist in Version 1.
+Version 3 makes this empirical limitation explicit.
 
 ---
 
-## 3. Structural Improvements
+### 2.2 Minimal Coherent Alignment
 
-### 3.1 Complete reorganization of the paper
-- Added Background section on Fisher geometry  
-- Introduced alignment tensor Δ  
-- Added spectral operator section  
-- Replaced φ-based derivation with scalar diagnostic A  
-- Added alignment regimes (equilibrium, suppression, reinforcement)
+Version 3 introduces a **resolution-aware interpretive refinement**:
 
-### 3.2 New experimental section
-Version 2 includes:
+- A finite-sample resolution scale  
+  **ε_N ∼ O(N⁻¹ᐟ²)**
 
-- Gaussian
-- Laplace
-- Gaussian Mixtures
-- MNIST MLP (new)
-- Summary table of regimes
+- A minimally resolvable excess-alignment diagnostic  
+  **𝒜_min(θ; q) = Σ_{λᵢ > 1 + ε_N} (λᵢ − 1)**
 
-All experiments now use a unified 5-step pipeline and share reproducible code.
+This quantity:
+- Filters out eigenvalue deviations attributable to finite-sample noise
+- Identifies only empirically *resolvable* reinforcement modes
+- Is explicitly operational and **not** a geometric invariant
+
+The original diagnostic 𝒜 remains the fundamental, invariant quantity.
 
 ---
 
-## 4. Removed or Deprecated Material
+### 2.3 Resolvable Coherent Amplitude
 
-### 4.1 Removed
-- Variational field-theoretic formulation of φ  
-- φ-based geometric flow discussion
+For empirical interpretation, Version 3 introduces the derived quantity:
 
-### 4.2 Deprecated
-- Interpretation of φ as a fundamental field  
-- Non-spectral alignment measures
+**φ_res(θ) = max{ √𝒜_min(θ; q), 0 }**
 
-These remain in Version 1 for archival purposes.
+This provides a finite-sample–robust amplitude that:
+- Suppresses artificial inflation from accumulated noise
+- Is particularly relevant in large neural networks
+- Plays an interpretive role analogous to φ, without redefining it
+
+Neither φ_res nor 𝒜_min replace the original diagnostic or amplitude.
 
 ---
 
-## 5. Summary
+## 3. Structural Changes to the Manuscript
 
-Version 2 represents a **major conceptual transition**:
-- From a geometric “coherence field φ(θ)”  
-- To a **spectral, invariant diagnostic A(θ; q)** grounded in Fisher geometry.
+### 3.1 New Subsection
 
-This version constitutes the new baseline for subsequent theoretical development
-and experimental extension.
+A new subsection was added:
+
+**Section IV.E — Finite-Sample Resolution and Minimal Coherent Alignment**
+
+This subsection:
+- Appears within the spectral structure section
+- Does not modify preceding derivations
+- Serves as a bridge between ideal theory and empirical measurement
+
+---
+
+### 3.2 Introduction Clarification
+
+A single sentence was added to the Introduction to acknowledge the operational
+distinction between formal alignment and resolvable coherent alignment.
+No new notation or definitions were introduced in the Introduction.
+
+---
+
+## 4. No Changes to Experiments or Results
+
+- No experiments were added, removed, or modified.
+- No figures were changed.
+- No hyperparameters, datasets, or models were altered.
+- No new sensitivity analyses were introduced.
+
+All experimental interpretations remain valid; Version 3 only clarifies how
+small-amplitude effects should be read under finite-sample resolution.
+
+---
+
+## 5. Relation to Previous Versions
+
+- **Version 1**: Introduced a coherence-field formulation φ(θ) with variational
+  dynamics.
+- **Version 2**: Replaced the field-based formulation with a scalar, invariant,
+  spectral diagnostic 𝒜(θ; q). Established the alignment operator and spectral
+  identity.
+- **Version 3**: Retains Version 2 as the theoretical baseline and adds an
+  operational layer clarifying finite-sample resolution and empirical
+  interpretability.
+
+---
+
+## 6. Summary
+
+Version 3 represents a **clarifying refinement**, not a theoretical extension.
+
+- The invariant diagnostic 𝒜 remains the core object.
+- Finite-sample effects are explicitly acknowledged and controlled.
+- Empirical robustness is improved without introducing new assumptions.
+- The manuscript is now fully aligned with reviewer expectations and ready for
+  publication.
+
+No further changes are planned for this manuscript.

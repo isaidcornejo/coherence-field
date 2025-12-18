@@ -25,8 +25,7 @@ def get_fig_dirs():
     """
     Return the two figure output directories used in publications:
 
-        paper/revtex/figures/generated
-        paper/mdpi/figures/generated
+        paper/figures/generated
 
     Returns
     -------
@@ -36,8 +35,7 @@ def get_fig_dirs():
     root = get_root_dir()
 
     return [
-        os.path.join(root, "paper", "revtex", "figures", "generated").replace("\\", "/"),
-        os.path.join(root, "paper", "mdpi", "figures", "generated").replace("\\", "/"),
+        os.path.join(root, "paper", "figures", "generated").replace("\\", "/"),
     ]
 
 

@@ -11,7 +11,9 @@ empirical sensitivity to the intrinsic geometric baseline.
 We introduce a coordinate-free scalar diagnostic that measures the empirical
 deformation of Fisher geometry:
 \[
-\mathcal{A}(\theta;q) = G^{ij}(\theta)\,\big(C_{ij}(\theta;q)-G_{ij}(\theta)\big),
+\mathcal{A}(\theta;q)
+=
+G^{ij}(\theta)\,\big(C_{ij}(\theta;q)-G_{ij}(\theta)\big),
 \]
 together with its rectified amplitude
 \[
@@ -22,6 +24,11 @@ non-negative eigenvalues $\lambda_i$, and that
 $\mathcal{A} = \sum_i (\lambda_i - 1)$. Thus $\mathcal{A}$ provides a signed,
 invariant summary of empirical reinforcement ($\lambda_i>1$) and suppression
 ($\lambda_i<1$), while $\phi$ isolates the excess-alignment sector.
+
+To account for finite-sample effects inherent to empirical estimation, we
+further introduce a resolution-aware refinement that distinguishes formal
+geometric alignment from resolvable coherent alignment, without modifying the
+underlying invariant construction.
 
 We validate the diagnostic across exponential families (Gaussian, Laplace)
 \cite{Brown1986}, a Gaussian mixture model \cite{McLachlanPeel2000}, and a
